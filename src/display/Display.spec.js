@@ -30,3 +30,20 @@ test('Open or Closed', () => {
   lockedMock ? getByText(/locked/i) : getByText(/unlocked/i);
   closedMock ? getByText(/closed/i) : getByText(/open/i);
 });
+
+test('red LED or green LED', () => {
+  const closedMock = jest.fn();
+  const lockedMock = jest.fn();
+  const { getByText } = render(
+    <Display closed={closedMock} locked={lockedMock} />
+  );
+  lockedMock
+    ? expect(getByText(/locked/i).classList.contains('red-led')).toBeTruthy()
+    : expect(
+        getByText(/unlocked/i).classList.contains('green-led')
+      ).toBeTruthy();
+
+  closedMock
+    ? expect(getByText(/closed/i).classList.contains('red-led')).toBeTruthy()
+    : expect(getByText(/open/i).classList.container('green-le')).toBeTruthy();
+});
