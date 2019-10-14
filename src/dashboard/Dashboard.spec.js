@@ -1,1 +1,6 @@
-// Test away
+/* 
+            Renders:
+                - Controls
+                - Display
+
+*/
