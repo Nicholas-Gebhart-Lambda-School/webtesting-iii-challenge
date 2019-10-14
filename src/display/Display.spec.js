@@ -9,3 +9,24 @@
             - when unlocked or open use the green-led class
 
 */
+
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
+
+import Display from './Display';
+
+// Render component
+test('Display is rendering', () => {
+  render(<Display />);
+});
+
+// Open or closed
+test('Open or Closed', () => {
+  const closedMock = jest.fn();
+  const lockedMock = jest.fn();
+  const { getByText } = render(
+    <Display closed={closedMock} locked={lockedMock} />
+  );
+  lockedMock ? getByText(/locked/i) : getByText(/unlocked/i);
+  closedMock ? getByText(/closed/i) : getByText(/open/i);
+});
